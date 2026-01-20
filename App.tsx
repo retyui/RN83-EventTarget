@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
 
 const listener = event => console.log('AppState event:', event);
 
-AppState.addEventListener('url', listener, { once: true }); // auto cleanup a listener after dispatching  1st event
+AppState.addEventListener('change', listener, { once: true }); // auto cleanup a listener after dispatching  1st event
 
-AppState.addEventListener('url', listener, { signal: AbortSignal.timeout(5000) }); // auto cleanup a listener after 5s
+AppState.addEventListener('change', listener, { signal: AbortSignal.timeout(5000) }); // auto cleanup a listener after 5s
 
 export default App;
