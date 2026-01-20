@@ -6,7 +6,7 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme, View, AppState } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -41,5 +41,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const listener = event => console.log('AppState event:', event);
+
+AppState.addEventListener('url', listener, { once: true }); // auto cleanup a listener after dispatching  1st event
+
+AppState.addEventListener('url', listener, { signal: AbortSignal.timeout(5000) }); // auto cleanup a listener after 5s
 
 export default App;
